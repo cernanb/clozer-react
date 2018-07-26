@@ -21815,66 +21815,7 @@ exports.createMemorySource = _history.createMemorySource;
 exports.isRedirect = isRedirect;
 exports.navigate = _history.navigate;
 exports.redirectTo = redirectTo;
-},{"react":"node_modules/react/index.js","warning":"node_modules/warning/browser.js","prop-types":"node_modules/prop-types/index.js","invariant":"node_modules/invariant/browser.js","create-react-context":"node_modules/create-react-context/lib/index.js","react-lifecycles-compat":"node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js","react-dom":"node_modules/react-dom/index.js","./lib/utils":"node_modules/@reach/router/es/lib/utils.js","./lib/history":"node_modules/@reach/router/es/lib/history.js"}],"src/components/Header.js":[function(require,module,exports) {
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _logo = require('../img/logo.svg');
-
-var _logo2 = _interopRequireDefault(_logo);
-
-var _router = require('@reach/router');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Header = function Header() {
-  return _react2.default.createElement(
-    'header',
-    null,
-    _react2.default.createElement(
-      'nav',
-      { className: 'navbar is-light', role: 'navigation', 'aria-label': 'main navigation' },
-      _react2.default.createElement(
-        'div',
-        { className: 'navbar-brand' },
-        _react2.default.createElement(
-          _router.Link,
-          { className: 'navbar-item', to: '/' },
-          _react2.default.createElement('img', { width: '60', src: _logo2.default, alt: '' })
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'navbar-end' },
-        _react2.default.createElement(
-          _router.Link,
-          { className: 'navbar-item', to: '/signup' },
-          'Signup'
-        ),
-        _react2.default.createElement(
-          _router.Link,
-          { className: 'navbar-item', to: '/signin' },
-          'Sign In'
-        ),
-        _react2.default.createElement(
-          _router.Link,
-          { className: 'navbar-item', to: '/clients' },
-          'Clients'
-        )
-      )
-    )
-  );
-};
-
-exports.default = Header;
-},{"react":"node_modules/react/index.js","../img/logo.svg":"src/img/logo.svg","@reach/router":"node_modules/@reach/router/es/index.js"}],"node_modules/graphql/jsutils/invariant.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","warning":"node_modules/warning/browser.js","prop-types":"node_modules/prop-types/index.js","invariant":"node_modules/invariant/browser.js","create-react-context":"node_modules/create-react-context/lib/index.js","react-lifecycles-compat":"node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js","react-dom":"node_modules/react-dom/index.js","./lib/utils":"node_modules/@reach/router/es/lib/utils.js","./lib/history":"node_modules/@reach/router/es/lib/history.js"}],"node_modules/graphql/jsutils/invariant.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33090,7 +33031,78 @@ var global = arguments[3];
 })));
 //# sourceMappingURL=react-apollo.browser.umd.js.map
 
-},{"react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","apollo-client":"node_modules/apollo-client/index.js","invariant":"node_modules/invariant/browser.js","fbjs/lib/shallowEqual":"node_modules/fbjs/lib/shallowEqual.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","lodash/flowRight":"node_modules/lodash/flowRight.js"}],"src/components/Clients.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","apollo-client":"node_modules/apollo-client/index.js","invariant":"node_modules/invariant/browser.js","fbjs/lib/shallowEqual":"node_modules/fbjs/lib/shallowEqual.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","lodash/flowRight":"node_modules/lodash/flowRight.js"}],"src/components/Header.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _templateObject = _taggedTemplateLiteral(['\n  {\n    currentUser {\n      id\n      email\n      firstName\n    }\n  }\n'], ['\n  {\n    currentUser {\n      id\n      email\n      firstName\n    }\n  }\n']);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _logo = require('../img/logo.svg');
+
+var _logo2 = _interopRequireDefault(_logo);
+
+var _router = require('@reach/router');
+
+var _graphqlTag = require('graphql-tag');
+
+var _graphqlTag2 = _interopRequireDefault(_graphqlTag);
+
+var _reactApollo = require('react-apollo');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var Header = function Header(props) {
+  return _react2.default.createElement(
+    'header',
+    null,
+    _react2.default.createElement(
+      'nav',
+      { className: 'navbar is-light', role: 'navigation', 'aria-label': 'main navigation' },
+      _react2.default.createElement(
+        'div',
+        { className: 'navbar-brand' },
+        _react2.default.createElement(
+          _router.Link,
+          { className: 'navbar-item', to: '/' },
+          _react2.default.createElement('img', { width: '60', src: _logo2.default, alt: '' })
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'navbar-end' },
+        _react2.default.createElement(
+          _router.Link,
+          { className: 'navbar-item', to: '/signup' },
+          'Signup'
+        ),
+        _react2.default.createElement(
+          _router.Link,
+          { className: 'navbar-item', to: '/signin' },
+          'Sign In'
+        ),
+        _react2.default.createElement(
+          _router.Link,
+          { className: 'navbar-item', to: '/clients' },
+          'Clients'
+        )
+      )
+    )
+  );
+};
+
+var query = (0, _graphqlTag2.default)(_templateObject);
+
+exports.default = (0, _reactApollo.graphql)(query)(Header);
+},{"react":"node_modules/react/index.js","../img/logo.svg":"src/img/logo.svg","@reach/router":"node_modules/@reach/router/es/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js"}],"src/components/Clients.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35567,11 +35579,15 @@ var app = document.getElementById('app');
 var cache = new _apolloCacheInmemory.InMemoryCache();
 
 var httpLink = new _apolloLinkHttp.HttpLink({
-  uri: 'http://localhost:4000/graphql'
+  uri: 'http://localhost:4000/graphql',
+  credentials: 'include'
 });
 
 var client = new _apolloClient.ApolloClient({
   link: httpLink,
+  dataIdFormObject: function dataIdFormObject(o) {
+    return o.id;
+  },
   cache: cache
 });
 
@@ -35618,7 +35634,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55445' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59207' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

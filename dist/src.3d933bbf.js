@@ -33038,7 +33038,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['\n  {\n    currentUser {\n      id\n      email\n      firstName\n    }\n  }\n'], ['\n  {\n    currentUser {\n      id\n      email\n      firstName\n    }\n  }\n']);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _templateObject = _taggedTemplateLiteral(['\n  {\n    currentUser {\n      id\n      email\n      firstName\n    }\n  }\n'], ['\n  {\n    currentUser {\n      id\n      email\n      firstName\n    }\n  }\n']),
+    _templateObject2 = _taggedTemplateLiteral(['\n  mutation {\n    logout {\n      firstName\n    }\n  }\n'], ['\n  mutation {\n    logout {\n      firstName\n    }\n  }\n']);
 
 var _react = require('react');
 
@@ -33060,48 +33063,98 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var Header = function Header(props) {
-  return _react2.default.createElement(
-    'header',
-    null,
-    _react2.default.createElement(
-      'nav',
-      { className: 'navbar is-light', role: 'navigation', 'aria-label': 'main navigation' },
-      _react2.default.createElement(
-        'div',
-        { className: 'navbar-brand' },
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Header = function (_Component) {
+  _inherits(Header, _Component);
+
+  function Header() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Header);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Header.__proto__ || Object.getPrototypeOf(Header)).call.apply(_ref, [this].concat(args))), _this), _this.logout = function (e) {
+      e.preventDefault();
+      _this.props.mutate({
+        refetchQueries: [{ query: query }]
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Header, [{
+    key: 'render',
+    value: function render() {
+      var data = this.props.data;
+
+      return _react2.default.createElement(
+        'header',
+        null,
         _react2.default.createElement(
-          _router.Link,
-          { className: 'navbar-item', to: '/' },
-          _react2.default.createElement('img', { width: '60', src: _logo2.default, alt: '' })
+          'nav',
+          { className: 'navbar is-light', role: 'navigation', 'aria-label': 'main navigation' },
+          _react2.default.createElement(
+            'div',
+            { className: 'navbar-brand' },
+            _react2.default.createElement(
+              _router.Link,
+              { className: 'navbar-item', to: '/' },
+              _react2.default.createElement('img', { width: '60', src: _logo2.default, alt: '' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'navbar-end' },
+            data.currentUser ? _react2.default.createElement(
+              _react.Fragment,
+              null,
+              _react2.default.createElement(
+                _router.Link,
+                { className: 'navbar-item', to: '/clients' },
+                'Clients'
+              ),
+              _react2.default.createElement(
+                _router.Link,
+                { className: 'navbar-item', to: '', onClick: this.logout },
+                'Log out'
+              )
+            ) : _react2.default.createElement(
+              _react.Fragment,
+              null,
+              _react2.default.createElement(
+                _router.Link,
+                { className: 'navbar-item', to: '/signup' },
+                'Signup'
+              ),
+              _react2.default.createElement(
+                _router.Link,
+                { className: 'navbar-item', to: '/signin' },
+                'Sign In'
+              )
+            )
+          )
         )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'navbar-end' },
-        _react2.default.createElement(
-          _router.Link,
-          { className: 'navbar-item', to: '/signup' },
-          'Signup'
-        ),
-        _react2.default.createElement(
-          _router.Link,
-          { className: 'navbar-item', to: '/signin' },
-          'Sign In'
-        ),
-        _react2.default.createElement(
-          _router.Link,
-          { className: 'navbar-item', to: '/clients' },
-          'Clients'
-        )
-      )
-    )
-  );
-};
+      );
+    }
+  }]);
+
+  return Header;
+}(_react.Component);
 
 var query = (0, _graphqlTag2.default)(_templateObject);
 
-exports.default = (0, _reactApollo.graphql)(query)(Header);
+var mutation = (0, _graphqlTag2.default)(_templateObject2);
+
+exports.default = (0, _reactApollo.graphql)(mutation)((0, _reactApollo.graphql)(query, mutation)(Header));
 },{"react":"node_modules/react/index.js","../img/logo.svg":"src/img/logo.svg","@reach/router":"node_modules/@reach/router/es/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js"}],"src/components/Clients.js":[function(require,module,exports) {
 'use strict';
 
@@ -35435,7 +35488,178 @@ var Signup = function (_Component) {
 var mutation = (0, _graphqlTag2.default)(_templateObject);
 
 exports.default = (0, _reactApollo.graphql)(mutation)(Signup);
-},{"react":"node_modules/react/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js"}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js"}],"src/components/Signin.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _templateObject = _taggedTemplateLiteral(['\n  mutation Signin($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      email\n    }\n  }\n'], ['\n  mutation Signin($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      email\n    }\n  }\n']),
+    _templateObject2 = _taggedTemplateLiteral(['\n  {\n    currentUser {\n      id\n      email\n    }\n  }\n'], ['\n  {\n    currentUser {\n      id\n      email\n    }\n  }\n']);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _graphqlTag = require('graphql-tag');
+
+var _graphqlTag2 = _interopRequireDefault(_graphqlTag);
+
+var _reactApollo = require('react-apollo');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Signin = function (_Component) {
+  _inherits(Signin, _Component);
+
+  function Signin() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Signin);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Signin.__proto__ || Object.getPrototypeOf(Signin)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      email: '',
+      password: ''
+    }, _this.submit = function (e) {
+      e.preventDefault();
+      var _this$state = _this.state,
+          email = _this$state.email,
+          password = _this$state.password;
+
+      _this.props.mutate({ variables: { email: email, password: password }, refetchQueries: [{ query: query }] }).then(function () {
+        return _this.setState({ email: '', password: password });
+      });
+    }, _this.onChange = function (e) {
+      _this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Signin, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Signin'
+        ),
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.submit },
+          _react2.default.createElement(
+            'div',
+            { className: 'field' },
+            _react2.default.createElement(
+              'label',
+              { className: 'label is-left' },
+              'Email'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'control' },
+              _react2.default.createElement('input', { onChange: this.onChange, name: 'email', className: 'input', type: 'text' })
+            ),
+            _react2.default.createElement(
+              'label',
+              { className: 'label is-left' },
+              'Password'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'control' },
+              _react2.default.createElement('input', { onChange: this.onChange, name: 'password', className: 'input', type: 'text' })
+            ),
+            _react2.default.createElement('input', { value: 'Sign in', type: 'submit' })
+          )
+        )
+      );
+    }
+  }]);
+
+  return Signin;
+}(_react.Component);
+
+var mutation = (0, _graphqlTag2.default)(_templateObject);
+
+var query = (0, _graphqlTag2.default)(_templateObject2);
+
+exports.default = (0, _reactApollo.graphql)(mutation)((0, _reactApollo.graphql)(query, mutation)(Signin));
+},{"react":"node_modules/react/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js"}],"src/components/App.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Header = require('./Header');
+
+var _Header2 = _interopRequireDefault(_Header);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_Component) {
+  _inherits(App, _Component);
+
+  function App() {
+    _classCallCheck(this, App);
+
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_Header2.default, null),
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          this.props.children
+        )
+      );
+    }
+  }]);
+
+  return App;
+}(_react.Component);
+
+exports.default = App;
+},{"react":"node_modules/react/index.js","./Header":"src/components/Header.js"}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -35504,8 +35728,6 @@ module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/index.js":[function(require,module,exports) {
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -35536,43 +35758,17 @@ var _Signup = require('./components/Signup');
 
 var _Signup2 = _interopRequireDefault(_Signup);
 
+var _Signin = require('./components/Signin');
+
+var _Signin2 = _interopRequireDefault(_Signin);
+
+var _App = require('./components/App');
+
+var _App2 = _interopRequireDefault(_App);
+
 require('./scss/app.scss');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var App = function (_Component) {
-  _inherits(App, _Component);
-
-  function App() {
-    _classCallCheck(this, App);
-
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-  }
-
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement(
-          'div',
-          { className: 'container' },
-          this.props.children
-        )
-      );
-    }
-  }]);
-
-  return App;
-}(_react.Component);
 
 var app = document.getElementById('app');
 
@@ -35598,14 +35794,15 @@ _reactDom2.default.render(_react2.default.createElement(
     _router.Router,
     null,
     _react2.default.createElement(
-      App,
+      _App2.default,
       { path: '/', name: 'Yomi' },
       _react2.default.createElement(_Clients2.default, { path: '/clients' }),
-      _react2.default.createElement(_Signup2.default, { path: '/signup' })
+      _react2.default.createElement(_Signup2.default, { path: '/signup' }),
+      _react2.default.createElement(_Signin2.default, { path: '/signin' })
     )
   )
 ), app);
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/Header":"src/components/Header.js","./components/Clients":"src/components/Clients.js","@reach/router":"node_modules/@reach/router/es/index.js","apollo-client":"node_modules/apollo-client/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js","apollo-cache-inmemory":"node_modules/apollo-cache-inmemory/lib/index.js","apollo-link-http":"node_modules/apollo-link-http/lib/index.js","./components/Signup":"src/components/Signup.js","./scss/app.scss":"src/scss/app.scss"}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/Header":"src/components/Header.js","./components/Clients":"src/components/Clients.js","@reach/router":"node_modules/@reach/router/es/index.js","apollo-client":"node_modules/apollo-client/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js","apollo-cache-inmemory":"node_modules/apollo-cache-inmemory/lib/index.js","apollo-link-http":"node_modules/apollo-link-http/lib/index.js","./components/Signup":"src/components/Signup.js","./components/Signin":"src/components/Signin.js","./components/App":"src/components/App.js","./scss/app.scss":"src/scss/app.scss"}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -35634,7 +35831,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59207' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50021' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

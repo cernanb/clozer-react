@@ -33155,7 +33155,46 @@ var query = (0, _graphqlTag2.default)(_templateObject);
 var mutation = (0, _graphqlTag2.default)(_templateObject2);
 
 exports.default = (0, _reactApollo.graphql)(mutation)((0, _reactApollo.graphql)(query, mutation)(Header));
-},{"react":"node_modules/react/index.js","../img/logo.svg":"src/img/logo.svg","@reach/router":"node_modules/@reach/router/es/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js"}],"src/components/Clients.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../img/logo.svg":"src/img/logo.svg","@reach/router":"node_modules/@reach/router/es/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js"}],"src/components/ClientCard.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ClientCard = function ClientCard(props) {
+  return _react2.default.createElement(
+    "div",
+    { className: "tile" },
+    _react2.default.createElement(
+      "div",
+      { className: "title" },
+      _react2.default.createElement(
+        "article",
+        { className: "tile is-child notification is-primary" },
+        _react2.default.createElement(
+          "p",
+          { className: "title" },
+          "Vertical..."
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "subtitle" },
+          "Top tile"
+        )
+      )
+    )
+  );
+};
+
+exports.default = ClientCard;
+},{"react":"node_modules/react/index.js"}],"src/components/Clients.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33164,7 +33203,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(['\n  {\n    clients {\n      firstName\n      lastName\n    }\n  }\n'], ['\n  {\n    clients {\n      firstName\n      lastName\n    }\n  }\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  {\n    currentUser {\n      id\n      email\n    }\n\n    clients {\n      id\n      firstName\n      lastName\n    }\n  }\n'], ['\n  {\n    currentUser {\n      id\n      email\n    }\n\n    clients {\n      id\n      firstName\n      lastName\n    }\n  }\n']);
 
 var _react = require('react');
 
@@ -33175,6 +33214,12 @@ var _graphqlTag = require('graphql-tag');
 var _graphqlTag2 = _interopRequireDefault(_graphqlTag);
 
 var _reactApollo = require('react-apollo');
+
+var _router = require('@reach/router');
+
+var _ClientCard = require('./ClientCard');
+
+var _ClientCard2 = _interopRequireDefault(_ClientCard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33190,18 +33235,46 @@ var Clients = function (_Component) {
   _inherits(Clients, _Component);
 
   function Clients() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, Clients);
 
-    return _possibleConstructorReturn(this, (Clients.__proto__ || Object.getPrototypeOf(Clients)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Clients.__proto__ || Object.getPrototypeOf(Clients)).call.apply(_ref, [this].concat(args))), _this), _this.renderClients = function () {
+      return _this.props.data.clients.map(function (client) {
+        return _react2.default.createElement(_ClientCard2.default, { client: client });
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Clients, [{
     key: 'render',
     value: function render() {
+      if (this.props.data.loading) {
+        return null;
+      }
+      if (!this.props.data.currentUser) {
+        console.log('no user');
+        return _react2.default.createElement(_router.Redirect, { to: '/login' });
+      }
       return _react2.default.createElement(
-        'h1',
+        'div',
         null,
-        'Clients'
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Clients'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'tile is-ancestor' },
+          this.renderClients()
+        )
       );
     }
   }]);
@@ -33212,7 +33285,7 @@ var Clients = function (_Component) {
 var clientsQuery = (0, _graphqlTag2.default)(_templateObject);
 
 exports.default = (0, _reactApollo.graphql)(clientsQuery)(Clients);
-},{"react":"node_modules/react/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js"}],"node_modules/apollo-cache/lib/utils.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","graphql-tag":"node_modules/graphql-tag/src/index.js","react-apollo":"node_modules/react-apollo/react-apollo.browser.umd.js","@reach/router":"node_modules/@reach/router/es/index.js","./ClientCard":"src/components/ClientCard.js"}],"node_modules/apollo-cache/lib/utils.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35831,7 +35904,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50021' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54170' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

@@ -33171,22 +33171,67 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ClientCard = function ClientCard(props) {
   return _react2.default.createElement(
     "div",
-    { className: "tile" },
+    { className: "column is-one-third" },
     _react2.default.createElement(
       "div",
-      { className: "title" },
+      { className: "card" },
       _react2.default.createElement(
-        "article",
-        { className: "tile is-child notification is-primary" },
+        "div",
+        { className: "card-content" },
         _react2.default.createElement(
-          "p",
-          { className: "title" },
-          "Vertical..."
+          "div",
+          { className: "media" },
+          _react2.default.createElement(
+            "div",
+            { className: "media-left" },
+            _react2.default.createElement(
+              "figure",
+              { className: "image is-48x48" },
+              _react2.default.createElement("i", { "class": "fas fa-user fa-3x" })
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "media-content" },
+            _react2.default.createElement(
+              "p",
+              { className: "title is-4" },
+              props.client.firstName + " " + props.client.lastName
+            ),
+            _react2.default.createElement(
+              "p",
+              { className: "subtitle is-6" },
+              props.client.email
+            )
+          )
         ),
         _react2.default.createElement(
-          "p",
-          { className: "subtitle" },
-          "Top tile"
+          "div",
+          { className: "content" },
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. ",
+          _react2.default.createElement(
+            "a",
+            null,
+            "@bulmaio"
+          ),
+          ".",
+          _react2.default.createElement(
+            "a",
+            { href: "#" },
+            "#css"
+          ),
+          " ",
+          _react2.default.createElement(
+            "a",
+            { href: "#" },
+            "#responsive"
+          ),
+          _react2.default.createElement("br", null),
+          _react2.default.createElement(
+            "time",
+            { datetime: "2016-1-1" },
+            "11:09 PM - 1 Jan 2016"
+          )
         )
       )
     )
@@ -33203,7 +33248,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _templateObject = _taggedTemplateLiteral(['\n  {\n    currentUser {\n      id\n      email\n    }\n\n    clients {\n      id\n      firstName\n      lastName\n    }\n  }\n'], ['\n  {\n    currentUser {\n      id\n      email\n    }\n\n    clients {\n      id\n      firstName\n      lastName\n    }\n  }\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  {\n    currentUser {\n      id\n      email\n    }\n\n    clients {\n      id\n      firstName\n      lastName\n      email\n    }\n  }\n'], ['\n  {\n    currentUser {\n      id\n      email\n    }\n\n    clients {\n      id\n      firstName\n      lastName\n      email\n    }\n  }\n']);
 
 var _react = require('react');
 
@@ -33272,7 +33317,7 @@ var Clients = function (_Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'tile is-ancestor' },
+          { className: 'columns' },
           this.renderClients()
         )
       );
@@ -35904,7 +35949,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54170' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56396' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

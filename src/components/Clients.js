@@ -19,7 +19,7 @@ class Clients extends Component {
     return (
       <div>
         <h1>Clients</h1>
-        <div className="tile is-ancestor">{this.renderClients()}</div>
+        <div className="columns">{this.renderClients()}</div>
       </div>
     )
   }
@@ -36,6 +36,7 @@ const clientsQuery = gql`
       id
       firstName
       lastName
+      email
     }
   }
 `

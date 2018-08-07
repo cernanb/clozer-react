@@ -8,7 +8,7 @@ test/input
 coverage
 .nyc_output
 .cache
-dist
+dist/
 lib
 !test/**/node_modules
 .vscode/

@@ -33317,7 +33317,7 @@ var Clients = function (_Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'columns' },
+          { className: 'columns is-multiline' },
           this.renderClients()
         )
       );
@@ -35949,7 +35949,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56396' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63271' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

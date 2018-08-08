@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import ParcelLogo from '../img/logo.svg'
-import { Link } from '@reach/router'
+import { Link } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
@@ -49,7 +49,7 @@ class Header extends Component {
 }
 
 const query = gql`
-  {
+  query isAuthenticated {
     currentUser {
       id
       email

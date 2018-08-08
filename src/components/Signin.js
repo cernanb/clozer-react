@@ -11,9 +11,10 @@ class Signin extends Component {
   submit = e => {
     e.preventDefault()
     const { email, password } = this.state
-    this.props
-      .mutate({ variables: { email, password }, refetchQueries: [{ query }] })
-      .then(() => this.setState({ email: '', password }))
+    this.props.mutate({ variables: { email, password }, refetchQueries: [{ query }] }).then(() => {
+      this.setState({ email: '', password })
+      this.props.history.push('/clients')
+    })
   }
 
   onChange = e => {

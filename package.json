@@ -7,7 +7,6 @@
     "start": "parcel index.html"
   },
   "dependencies": {
-    "@reach/router": "^1.1.1",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
     "apollo-link-http": "^1.5.4",
@@ -17,7 +16,8 @@
     "reach": "^1.0.1",
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

@@ -1,13 +1,28 @@
 import React, { Component } from 'react'
 import Header from './Header'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+import Clients from './Clients'
+import Signup from './Signup'
+import Signin from './Signin'
+import Home from './Home'
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <div className="container">{this.props.children}</div>
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/clients" component={Clients} />
+              <Route path="/signin" component={Signin} />
+              <Route path="/signup" component={Signup} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
     )
   }
 }

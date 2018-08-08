@@ -12,10 +12,7 @@ class Clients extends Component {
     if (this.props.data.loading) {
       return null
     }
-    if (!this.props.data.currentUser) {
-      console.log('no user')
-      return <Redirect to="/login" />
-    }
+
     return (
       <div>
         <h1>Clients</h1>

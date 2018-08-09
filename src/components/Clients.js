@@ -6,7 +6,7 @@ import ClientCard from './ClientCard'
 
 class Clients extends Component {
   renderClients = () => {
-    return this.props.data.clients.map(client => <ClientCard client={client} />)
+    return this.props.data.clients.map(client => <ClientCard key={client.id} client={client} />)
   }
   render() {
     if (this.props.data.loading) {

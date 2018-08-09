@@ -34,7 +34,7 @@ class Signin extends Component {
             </div>
             <label className="label is-left">Password</label>
             <div className="control">
-              <input onChange={this.onChange} name="password" className="input" type="text" />
+              <input onChange={this.onChange} name="password" className="input" type="password" />
             </div>
             <input value="Sign in" type="submit" />
           </div>

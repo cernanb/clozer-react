@@ -13,7 +13,6 @@
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "node-sass": "^4.9.2",
-    "reach": "^1.0.1",
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
     "react-dom": "^16.4.1",

@@ -9,7 +9,7 @@ class Clients extends Component {
   }
   render() {
     if (this.props.data.loading) {
-      return null
+      return null d
     }
 
     return (

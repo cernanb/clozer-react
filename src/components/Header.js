@@ -8,7 +8,7 @@ class Header extends Component {
   logout = e => {
     e.preventDefault()
     this.props.mutate({
-      refetchQueries: [{ query }],
+      refetchQueries: [{ query }]
     })
   }
   render() {

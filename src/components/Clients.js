@@ -1,40 +1,44 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
+import { Query } from 'react-apollo'
 import ClientCard from './ClientCard'
 
 class Clients extends Component {
-  renderClients = () => {
-    return this.props.data.clients.map(client => <ClientCard key={client.id} client={client} />)
-  }
-  render() {
-    if (this.props.data.loading) {
-      return null
-    }
-
-    return (
-      <div>
-        <h1>Clients</h1>
-        <div className="columns is-multiline">{this.renderClients()}</div>
-      </div>
-    )
-  }
+   renderClients = clients => {
+      return clients.map(client => <ClientCard history={this.props.history} key={client.id} client={client} />)
+   }
+   render() {
+      return (
+         <Query query={clientsQuery}>
+            {({ loading, data }) => {
+               return loading ? (
+                  <h1>Loading</h1>
+               ) : (
+                  <div>
+                     <h1>Clients</h1>
+                     <div className="columns is-multiline">{this.renderClients(data.clients)}</div>
+                  </div>
+               )
+            }}
+         </Query>
+      )
+   }
 }
 
 const clientsQuery = gql`
-  {
-    currentUser {
-      id
-      email
-    }
+   {
+      currentUser {
+         id
+         email
+      }
 
-    clients {
-      id
-      firstName
-      lastName
-      email
-    }
-  }
+      clients {
+         id
+         firstName
+         lastName
+         email
+      }
+   }
 `
 
-export default graphql(clientsQuery)(Clients)
+export default Clients

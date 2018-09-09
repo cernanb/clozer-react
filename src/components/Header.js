@@ -3,6 +3,7 @@ import ParcelLogo from '../img/logo.svg'
 import { Link } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
+import { Query } from 'react-apollo'
 
 class Header extends Component {
   logout = e => {
@@ -22,25 +23,29 @@ class Header extends Component {
             </Link>
           </div>
           <div className="navbar-end">
-            {data.currentUser ? (
-              <Fragment>
-                <Link className="navbar-item" to="/clients">
-                  Clients
-                </Link>
-                <Link className="navbar-item" to="" onClick={this.logout}>
-                  Log out
-                </Link>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <Link className="navbar-item" to="/signup">
-                  Signup
-                </Link>
-                <Link className="navbar-item" to="/signin">
-                  Sign In
-                </Link>
-              </Fragment>
-            )}
+            <Query query={query}>
+              {({ data }) => {
+                return data.currentUser ? (
+                  <Fragment>
+                    <Link className="navbar-item" to="/clients">
+                      Clients
+                    </Link>
+                    <Link className="navbar-item" to="" onClick={this.logout}>
+                      Log out
+                    </Link>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <Link className="navbar-item" to="/signup">
+                      Signup
+                    </Link>
+                    <Link className="navbar-item" to="/signin">
+                      Sign In
+                    </Link>
+                  </Fragment>
+                )
+              }}
+            </Query>
           </div>
         </nav>
       </header>

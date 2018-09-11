@@ -33,7 +33,7 @@ class Clients extends Component {
 }
 
 const clientsQuery = gql`
-  {
+  query clientsQuery {
     currentUser {
       id
       email

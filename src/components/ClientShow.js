@@ -5,21 +5,9 @@ import ReactLoading from 'react-loading'
 
 export default class ClientShow extends Component {
   render() {
+    const { match } = this.props
     return (
-      <Query
-        query={gql`{
-          client(id: "${this.props.match.params.id}") {
-            id
-            firstName
-            lastName
-            opportunities {
-              id
-              product
-            }
-          }
-        }
-`}
-      >
+      <Query query={CLIENT_QUERY} variables={{ id: match.params.id }}>
         {({ data, loading }) => {
           return loading ? (
             <ReactLoading
@@ -37,3 +25,17 @@ export default class ClientShow extends Component {
     )
   }
 }
+
+const CLIENT_QUERY = gql`
+  query clientQuery($id: ID!) {
+    client(id: $id) {
+      id
+      firstName
+      lastName
+      opportunities {
+        id
+        product
+      }
+    }
+  }
+`

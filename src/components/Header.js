@@ -3,17 +3,11 @@ import ParcelLogo from '../img/logo.svg'
 import { Link } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Query } from 'react-apollo'
+import { Query, Mutation, ApolloConsumer } from 'react-apollo'
+import { withRouter } from 'react-router-dom'
 
 class Header extends Component {
-  logout = e => {
-    e.preventDefault()
-    this.props.mutate({
-      refetchQueries: [{ query }]
-    })
-  }
   render() {
-    const { data } = this.props
     return (
       <header>
         <nav className="navbar is-light" role="navigation" aria-label="main navigation">
@@ -24,15 +18,33 @@ class Header extends Component {
           </div>
           <div className="navbar-end">
             <Query query={query}>
-              {({ data }) => {
-                return data.currentUser ? (
+              {({ data, loading }) => {
+                return data.loggedIn ? (
                   <Fragment>
                     <Link className="navbar-item" to="/clients">
                       Clients
                     </Link>
-                    <Link className="navbar-item" to="" onClick={this.logout}>
-                      Log out
-                    </Link>
+                    <ApolloConsumer>
+                      {client => (
+                        <Mutation mutation={mutation}>
+                          {logout => (
+                            <Link
+                              className="navbar-item"
+                              to=""
+                              onClick={e => {
+                                e.preventDefault()
+                                logout().then(() => {
+                                  client.writeData({ data: { loggedIn: false } })
+                                  this.props.history.push('/signin')
+                                })
+                              }}
+                            >
+                              Log out
+                            </Link>
+                          )}
+                        </Mutation>
+                      )}
+                    </ApolloConsumer>
                   </Fragment>
                 ) : (
                   <Fragment>
@@ -55,20 +67,16 @@ class Header extends Component {
 
 const query = gql`
   query isAuthenticated {
-    currentUser {
-      id
-      email
-      firstName
-    }
+    loggedIn @client
   }
 `
 
 const mutation = gql`
-  mutation {
+  mutation logout {
     logout {
       firstName
     }
   }
 `
 
-export default graphql(mutation)(graphql(query, mutation)(Header))
+export default withRouter(Header)

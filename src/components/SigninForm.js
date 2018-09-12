@@ -23,6 +23,7 @@ export default class SigninForm extends Component {
               login()
                 .then(() => {
                   this.setState({ email: '', password: '' })
+                  this.props.client.writeData({ data: { loggedIn: true } })
                   this.props.history.push('/clients')
                 })
                 .catch(e => console.log(e))

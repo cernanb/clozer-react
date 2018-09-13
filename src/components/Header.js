@@ -24,27 +24,23 @@ class Header extends Component {
                     <Link className="navbar-item" to="/clients">
                       Clients
                     </Link>
-                    <ApolloConsumer>
-                      {client => (
-                        <Mutation mutation={mutation}>
-                          {logout => (
-                            <Link
-                              className="navbar-item"
-                              to=""
-                              onClick={e => {
-                                e.preventDefault()
-                                logout().then(() => {
-                                  client.writeData({ data: { loggedIn: false } })
-                                  this.props.history.push('/signin')
-                                })
-                              }}
-                            >
-                              Log out
-                            </Link>
-                          )}
-                        </Mutation>
+                    <Mutation mutation={mutation}>
+                      {(logout, result) => (
+                        <Link
+                          className="navbar-item"
+                          to=""
+                          onClick={e => {
+                            e.preventDefault()
+                            logout().then(() => {
+                              result.client.writeData({ data: { loggedIn: false } })
+                              this.props.history.push('/signin')
+                            })
+                          }}
+                        >
+                          Log out
+                        </Link>
                       )}
-                    </ApolloConsumer>
+                    </Mutation>
                   </Fragment>
                 ) : (
                   <Fragment>

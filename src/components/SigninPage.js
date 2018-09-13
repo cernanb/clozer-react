@@ -8,16 +8,10 @@ import { ApolloConsumer } from 'react-apollo'
 class SigninPage extends Component {
   render() {
     return (
-      <ApolloConsumer>
-        {client => {
-          return (
-            <div>
-              <h1>Signin</h1>
-              <SigninForm history={this.props.history} client={client} />
-            </div>
-          )
-        }}
-      </ApolloConsumer>
+      <div>
+        <h1>Signin</h1>
+        <SigninForm history={this.props.history} />
+      </div>
     )
   }
 }

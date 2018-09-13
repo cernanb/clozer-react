@@ -16,14 +16,14 @@ export default class SigninForm extends Component {
     const { email, password } = this.state
     return (
       <Mutation mutation={LOGIN} variables={{ email, password }}>
-        {login => (
+        {(login, result) => (
           <form
             onSubmit={e => {
               e.preventDefault()
               login()
                 .then(() => {
                   this.setState({ email: '', password: '' })
-                  this.props.client.writeData({ data: { loggedIn: true } })
+                  result.client.writeData({ data: { loggedIn: true } })
                   this.props.history.push('/clients')
                 })
                 .catch(e => console.log(e))

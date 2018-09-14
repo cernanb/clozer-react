@@ -38,7 +38,8 @@ export default class SigninForm extends Component {
               <div className="control">
                 <input onChange={this.onChange} name="password" className="input" type="password" />
               </div>
-              <input value="Sign in" type="submit" />
+              <br />
+              <input value="Sign in" className="button is-medium" type="submit" />
             </div>
           </form>
         )}

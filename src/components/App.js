@@ -6,6 +6,7 @@ import Clients from './Clients'
 import ClientShow from './ClientShow'
 import Signup from './Signup'
 import SigninPage from './SigninPage'
+import NewClientPage from './NewClientPage'
 import Home from './Home'
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route path="/clients/new" component={NewClientPage} />
               <Route path="/clients/:id" component={ClientShow} />
               <Route exact path="/clients" component={Clients} />
               <Route path="/signin" component={SigninPage} />

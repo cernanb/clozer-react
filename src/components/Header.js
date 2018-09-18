@@ -21,6 +21,9 @@ class Header extends Component {
               {({ data, loading }) => {
                 return data.loggedIn ? (
                   <Fragment>
+                  <Link className="navbar-item" to="/clients/new">
+                    New Clients
+                  </Link>
                     <Link className="navbar-item" to="/clients">
                       Clients
                     </Link>

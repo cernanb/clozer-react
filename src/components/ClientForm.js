@@ -68,7 +68,7 @@ export default class ClientForm extends Component {
                   />
                 </div>
                 <br />
-                <input value="Sign in" className="button is-medium" type="submit" />
+                <input value="Create Client" className="button is-medium" type="submit" />
               </div>
             </form>
           )
